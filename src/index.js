@@ -1,3 +1,4 @@
+//import './style.less';
 
 class View {
     constructor() {
@@ -10,6 +11,7 @@ class View {
         this._signUpForm = null;
         this._userPasswordRepeat = null;
         this._errorInfo = null;
+        this._email = null;
     
         this.createButtons();
     }
@@ -91,7 +93,6 @@ class View {
         errorBox.className = ("error-box");
         divFormSection.append(errorBox); 
         let errorInfo = document.createElement("p");
-        errorInfo.innerHTML = "Wrong username or password";
         errorInfo.className = ("error");
         errorBox.append(errorInfo);
         this._errorInfo = errorBox;
@@ -138,11 +139,19 @@ class View {
     }
 
     checkInDatabase = event =>{
+        console.log(this._userName.value);
+        console.log(this._userPassword.value);
+        console.log(this._dataBase);
         event.preventDefault();
-        if (this.searchInDatabase()){
+        if(this.checkInput(this._userName.value) === false || this.checkInput(this._userPassword.value) === false){
+            let answer = "No info";
+            this._errorInfo.innerHTML = answer;
+            this._errorInfo.style.display = "block";
+        }else if (this.searchInDatabase()){
             console.log("cicey");//запуск др окна
             this._errorInfo.style.display = "none";
         }else{
+            this._errorInfo.innerHTML = "Wrong username or password";
             this._errorInfo.style.display = "block";
         }
     }
@@ -159,6 +168,8 @@ class View {
     }
     
     createSignUpWindow = () => {
+
+        this._signInForm.remove();
     
         let div = document.createElement("div");
         div.className = ("signin-page");
@@ -179,7 +190,7 @@ class View {
 
         let inputUserName = document.createElement("input");
         inputUserName.placeholder = "Enter Username";
-        inputUserName.className = ("input-name");
+        inputUserName.className = ("input-name-reg");
         inputUserName.type = "text";
         inputUserName.setAttribute("required", "required");
         divFormSection.append(inputUserName);
@@ -204,7 +215,7 @@ class View {
         let inputPassword = document.createElement("input");
         inputPassword.placeholder = "Enter Password";
         inputPassword.type = "password";
-        inputPassword.className = ("input-password");
+        inputPassword.className = ("input-password-reg");
         inputPassword.setAttribute("required", "required");
         divFormSection.append(inputPassword);
 
@@ -221,20 +232,111 @@ class View {
         divFormSection.append(inputPasswordRepeat);
 
         let signUpButton = document.createElement("button");
-        signUpButton.innerHTML = "SignIn";
-        signUpButton.className = ("signin-modal");
+        signUpButton.innerHTML = "SignUp";
+        signUpButton.className = ("signup-modal");
         divFormSection.append(signUpButton);
+
+        let errorBox = document.createElement("div");
+        errorBox.className = ("error-box");
+        divFormSection.append(errorBox); 
+        let errorInfo = document.createElement("p");
+        errorInfo.className = ("error");
+        errorBox.append(errorInfo);
+        this._errorInfo = errorBox;
+        this._errorInfo.style.display = "none";
 
         this._signUpForm = divFormSection;
         this._signUpForm.style.display = 'block';
          
-        this._userName = document.querySelector(".input-name");
-        this._userPassword = document.querySelector(".input-password");
+        this._userName = document.querySelector(".input-name-reg");
+        this._userPassword = document.querySelector(".input-password-reg");
         this._userPasswordRepeat = document.querySelector(".input-password-repeat");
-        //this.createNewDatabase();
+        this._email = document.querySelector(".input-email");
         
-        //signInButton.addEventListener('click', );
-        
+        signUpButton.addEventListener('click', this.checkNewInfo);
+    }
+    checkInput = (inputString) => {
+        if (inputString === ""){
+            return false;
+        }
+        else{
+            console.log ('ok');
+            return true;
+        }
+    }
+    checkNewInfo = event => {
+        event.preventDefault();
+        //console.log("uuu");
+        console.log(this._userName.value);
+        console.log(this._userPassword.value);
+        console.log(this._userPasswordRepeat.value);
+        console.log(this._email.value);
+        if(this.checkInput(this._userName.value) === false || this.checkInput(this._userPassword.value) === false || this.checkInput(this._userPasswordRepeat.value) === false || this.checkInput(this._email.value) === false){
+            let answer = "No info";
+            this._errorInfo.innerHTML = answer;
+            this._errorInfo.style.display = "block";
+        }else{
+            this.checkPassword();
+        }
+    }
+    checkTwoPasswords = () =>{
+        console.log(this._userPassword.value);
+        console.log(this._userPasswordRepeat.value);
+        this._errorInfo.style.display = "none";
+        if (this._userPassword.value === this._userPasswordRepeat.value){
+            this._userPassword.style.color = 'green';
+            this._userPasswordRepeat.style.color = 'green';
+            this.checkUserName();
+        } else {
+            this._userPassword.style.color = 'red';
+            this._userPasswordRepeat.style.color = 'red';
+            this._errorInfo.style.color = 'red';
+            this._errorInfo.innerHTML = 'not matching';
+            this._errorInfo.style.display = "block";
+        }
+    }
+    checkPassword = () => {
+           if (this._userPassword.value.length >= 8){
+                this.checkTwoPasswords();
+                
+                return true;
+           }else{
+                let answer = "Password is too short";
+                this._errorInfo.innerHTML = answer;
+                this._errorInfo.style.display = "block";
+
+                return false;
+           }      
+    }
+    checkUserName = () => {
+        if (this.serchUserNameInDataBase()){
+            this._errorInfo.innerHTML = "Wrong username";
+            this._errorInfo.style.display = "block";
+            
+        }else{
+            console.log("cicey");
+            let answer = "Uraaaaaaaaaaaaa";
+            this._errorInfo.innerHTML = answer;
+            this._errorInfo.style.display = "block";
+            this.addToDatabase();
+            this._signUpForm.remove();
+            this.createSignInWindow();
+        }
+    }
+    serchUserNameInDataBase = () => {
+        let nameInput = this._userName.value;
+        console.log(nameInput);
+
+        return this._dataBase.find(
+            item => item.username === nameInput
+        );
+    }
+    addToDatabase = () => {
+            
+        let newObj = {username: this._userName.value, password: this._userPassword.value};
+        this._dataBase.push(newObj);
+        console.log(this._dataBase);
+            
     }
 };
 new View();
