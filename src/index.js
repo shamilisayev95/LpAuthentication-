@@ -9,6 +9,7 @@ class View {
         this._signInForm = null;
         this._signUpForm = null;
         this._userPasswordRepeat = null;
+        this._errorInfo = null;
     
         this.createButtons();
     }
@@ -72,14 +73,29 @@ class View {
 
         let showPassword = document.createElement("input");
         showPassword.type = "checkbox";
-        showPassword.innerHTML = "Show Password";
         showPassword.className = ("show-password");
         divFormSection.append(showPassword);
+
+        let showPasswordLabel = document.createElement("p");
+        showPasswordLabel.className = "show-password-label";
+        showPasswordLabel.innerHTML = "Show password";
+        divFormSection.append(showPasswordLabel);
+
 
         let signInButton = document.createElement("button");
         signInButton.innerHTML = "SignIn";
         signInButton.className = ("signin-modal");
         divFormSection.append(signInButton);
+
+        let errorBox = document.createElement("div");
+        errorBox.className = ("error-box");
+        divFormSection.append(errorBox); 
+        let errorInfo = document.createElement("p");
+        errorInfo.innerHTML = "Wrong username or password";
+        errorInfo.className = ("error");
+        errorBox.append(errorInfo);
+        this._errorInfo = errorBox;
+        this._errorInfo.style.display = "none";
 
         
         showPassword.addEventListener('click', this.showPassword);
@@ -121,19 +137,13 @@ class View {
         ]; 
     }
 
-    checkInDatabase = () =>{
+    checkInDatabase = event =>{
+        event.preventDefault();
         if (this.searchInDatabase()){
-            alert("cicey");//запуск др окна
+            console.log("cicey");//запуск др окна
+            this._errorInfo.style.display = "none";
         }else{
-            alert("Wrong password");//вывод сообщения об ошибке на экран
-            /*let errorBox = document.createElement("div");
-            errorBox.className = ("error-box");
-            this._signInForm.append(errorBox); 
-            let errorInfo = document.createElement("p");
-            errorInfo.innerHTML = "Wrong username or password";
-            errorInfo.className = ("error");
-            errorBox.append(errorInfo); 
-            //errorInfo.remove();*/
+            this._errorInfo.style.display = "block";
         }
     }
 
