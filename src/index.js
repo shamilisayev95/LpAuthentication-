@@ -1,6 +1,6 @@
 import './style.less';
 
-class View {
+    class View {
     constructor() {
         this._userName = null;
         this._dataBase = null;
@@ -309,7 +309,16 @@ class View {
         }
     }
     checkEmail = () => {
-        validateEmail(this._email.value())
+        if (this.validateEmail()){
+            this.addToDatabase();
+            this._signUpForm.remove();
+            this.createSignInWindow();
+        }else {
+            console.log("email is not working");
+            this._errorInfo.innerHTML = "Wrong Email Type";
+            this._errorInfo.style.color = 'red';
+            this._errorInfo.style.display = "block";
+        }
     }
 
     validateEmail = () => {
@@ -329,9 +338,7 @@ class View {
             let answer = "Uraaaaaaaaaaaaa";
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
-            this.addToDatabase();
-            this._signUpForm.remove();
-            this.createSignInWindow();
+            this.checkEmail();
         }
     }
     serchUserNameInDataBase = () => {
@@ -349,5 +356,5 @@ class View {
         console.log(this._dataBase);
 
     }
-};
+}
 new View();
