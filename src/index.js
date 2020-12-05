@@ -52,3 +52,5 @@ class Index {
 }
 
 new Index();
+
+export default Index

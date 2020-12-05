@@ -1,4 +1,4 @@
-import Data from './data';
+
 class SignIn {
     constructor(dataBase) {
         this._root = null;
@@ -104,12 +104,16 @@ class SignIn {
             let answer = "Password is too short";
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
-        }else if (this._dataBase.searchInDatabase(this._userName.value, this._userPassword.value)){
-            console.log("cicey");//запуск др окна
-            this._errorInfo.style.display = "none";
-        }else{
-            this._errorInfo.innerHTML = "Wrong username or password";
+        }else if (!this._dataBase.searchUserNameInDataBase(this._userName.value)){
+            let answer = "Wrong username";
+            this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
+        }else if (!this._dataBase.searchPasswordInDatabase(this._userPassword.value)){
+            let answer = "Wrong password";
+            this._errorInfo.innerHTML = answer;
+            this._errorInfo.style.display = "block";
+        }else{
+            console.log("cicey");//запуск велкам
         }
     }
     checkString = (inputString) => {

@@ -1,4 +1,6 @@
-import Data from './data';
+import Index from "./index";
+import SignIn from "./signIn";
+
 class SignUp {
     constructor(dataBase) {
         this._root = null;
@@ -117,22 +119,37 @@ class SignUp {
             let answer = "No info";
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
-        }else{
-            this.checkUserName();
-        }
-    }
-    checkEmail = () => {
-        if (this.validateEmail()){
-
-            this.checkPassword();
-        }else {
+        }else if(this._dataBase.searchUserNameInDataBase(this._userName.value)){
+            this._errorInfo.innerHTML = "Wrong username";
+            this._errorInfo.style.display = "block";    
+        }else if(this.validateEmail() == false){
             console.log("email is not working");
             this._errorInfo.innerHTML = "Wrong Email Type";
             this._errorInfo.style.color = 'red';
             this._errorInfo.style.display = "block";
+        }else if(this.checkPassword() == false){
+            let answer = "Password is too short";
+            this._errorInfo.innerHTML = answer;
+            this._errorInfo.style.display = "block";
+        }else if(this.checkTwoPasswords == false){
+            this._userPassword.style.color = 'red';
+            this._userPasswordRepeat.style.color = 'red';
+            this._errorInfo.style.color = 'red';
+            this._errorInfo.innerHTML = 'not matching';
+            this._errorInfo.style.display = "block";
+        }else{
+            this._userPassword.style.color = 'green';
+            this._userPasswordRepeat.style.color = 'green';
+            this._dataBase.addToDatabase(this._userName.value, this._userPassword.value);
+            let newPage = new Index();
+            let root = document.getElementById("root");
+            root.remove();
+            newPage.createNewRoot();
+            newPage.createButtons();
+            let modalPage = new SignIn(this._dataBase);
+            modalPage.createSignInWindow();
         }
     }
-
     validateEmail = () => {
         if (this._email.value) {
             let re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -144,37 +161,23 @@ class SignUp {
         console.log(this._userPasswordRepeat.value);
         this._errorInfo.style.display = "none";
         if (this._userPassword.value === this._userPasswordRepeat.value){
-            this._userPassword.style.color = 'green';
-            this._userPasswordRepeat.style.color = 'green';
-            let answer = "Uraaaaaaaaaaaaa";
-            this._errorInfo.innerHTML = answer;
-            this._errorInfo.style.display = "block";
-            this._dataBase.addToDatabase(this._userName.value, this._userPassword.value);    
+
+            return true;
+           
         } else {
-            this._userPassword.style.color = 'red';
-            this._userPasswordRepeat.style.color = 'red';
-            this._errorInfo.style.color = 'red';
-            this._errorInfo.innerHTML = 'not matching';
-            this._errorInfo.style.display = "block";
+
+            return false;
         }
     }
     checkPassword = () => {
         if (this._userPassword.value.length >= 8){
-            this.checkTwoPasswords();
+
+            return true;
         }else{
-            let answer = "Password is too short";
-            this._errorInfo.innerHTML = answer;
-            this._errorInfo.style.display = "block";
+
+            return false;   
         }      
-    }
-    checkUserName = () => {
-        if (this._dataBase.serchUserNameInDataBase(this._userName.value)){
-            this._errorInfo.innerHTML = "Wrong username";
-            this._errorInfo.style.display = "block";
-        }else{
-            console.log("cicey");
-            this.checkEmail();  
-        }
-    }  
+    }    
+   
 };
 export default SignUp;

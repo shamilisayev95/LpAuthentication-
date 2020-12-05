@@ -16,14 +16,16 @@ class Data{
         ]; 
     }
 
-    searchInDatabase = (userName, userPassword) => {
+    searchPasswordInDatabase = (userPassword) => {
+        console.log("sgol");
      
         return this._dataBase.find(
-            item => item.username === userName && item.password === userPassword
+            item => item.password === userPassword
         );
     }
 
-    serchUserNameInDataBase = (userName) => {
+    searchUserNameInDataBase = (userName) => {
+        console.log("slam");
 
         return this._dataBase.find(
             item => item.username === userName
