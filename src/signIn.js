@@ -1,4 +1,5 @@
-
+import Welcome from "./welcome";
+import Index from "./index";
 class SignIn {
     constructor(dataBase) {
         this._root = null;
@@ -113,7 +114,13 @@ class SignIn {
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
         }else{
-            console.log("cicey");//запуск велкам
+            console.log("cicey");
+            let newPage = new Index();
+            let root = document.getElementById("root");
+            root.remove();
+            newPage.createNewRoot();
+            let modalPage = new Welcome(this._userName.value);
+            modalPage.createWelcomeWindow();
         }
     }
     checkString = (inputString) => {
