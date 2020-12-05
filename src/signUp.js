@@ -1,5 +1,6 @@
 import Index from "./index";
 import SignIn from "./signIn";
+import './style.less';
 
 class SignUp {
     constructor(dataBase) {

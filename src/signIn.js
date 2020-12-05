@@ -1,5 +1,6 @@
 import Welcome from "./welcome";
 import Index from "./index";
+import './style.less';
 class SignIn {
     constructor(dataBase) {
         this._root = null;
@@ -119,7 +120,7 @@ class SignIn {
             let root = document.getElementById("root");
             root.remove();
             newPage.createNewRoot();
-            let modalPage = new Welcome(this._userName.value);
+            let modalPage = new Welcome(this._userName.value, this._dataBase);
             modalPage.createWelcomeWindow();
         }
     }

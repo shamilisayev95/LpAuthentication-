@@ -1,6 +1,7 @@
 import Data from './data';
 import SignIn from './signIn';
 import SignUp from './signUp';
+import './style.less';
 
 class Index {
     constructor () {
