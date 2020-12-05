@@ -51,7 +51,6 @@ class Index {
         this._modalPage.createSignUpWindow();
     }
 }
-
 new Index();
 
 export default Index
