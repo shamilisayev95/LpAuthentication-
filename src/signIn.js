@@ -92,10 +92,6 @@ class SignIn {
         }
     }
     checkInputs = event =>{
-        console.log(this._userName.value);
-        console.log(this._userPassword.value);
-        console.log(this._dataBase);
-        console.log(this._userPassword.value.length);
         event.preventDefault();
         if(this.checkString(this._userName.value) === false || this.checkString(this._userPassword.value) === false){
             let answer = "No info";
@@ -112,9 +108,8 @@ class SignIn {
         }else if (!this._dataBase.searchPasswordInDatabase(this._userPassword.value)){
             let answer = "Wrong password";
             this._errorInfo.innerHTML = answer;
-            this._errorInfo.style.display = "block";
+            // this._errorInfo.style.display = "block";
         }else{
-            console.log("cicey");
             let newPage = new Index();
             let root = document.getElementById("root");
             root.remove();
