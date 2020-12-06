@@ -37,10 +37,11 @@ class Index {
     getSignInWindow = () => {
         let root = document.getElementById("root");
         root.remove();
+        document.body.style.backgroundImage = "url('./images/drakon.jpg')";
         this.createNewRoot();
         this.createButtons();
         this._modalPage = new SignIn(this._dataBase);
-        this._modalPage.createSignInWindow();
+        this._modalPage.createSignOutButton();
     }
     getSignUpWindow = () => {
         let root = document.getElementById("root");

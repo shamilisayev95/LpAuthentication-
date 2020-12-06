@@ -18,7 +18,7 @@ class Welcome {
             form.className = ("welcome-form");
             divWelcome.append(form);
         
-            let welcome = document.createElement("span");
+            let welcome = document.createElement("p");
             welcome.className = ("welcome-text");
             welcome.innerHTML = this._userName + ", welcome to our community!"
             form.append(welcome);

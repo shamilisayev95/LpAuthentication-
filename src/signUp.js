@@ -103,40 +103,36 @@ class SignUp {
     }
     checkString = (inputString) => {
         if (inputString === ""){
+
             return false;
         }
         else{
-            console.log ('ok');
+
             return true;
         }
     }
     checkNewInfo = event => {
         event.preventDefault();
-        console.log(this._userName.value);
-        console.log(this._userPassword.value);
-        console.log(this._userPasswordRepeat.value);
-        console.log(this._email.value);
         if(this.checkString(this._userName.value) === false || this.checkString(this._userPassword.value) === false || this.checkString(this._userPasswordRepeat.value) === false || this.checkString(this._email.value) === false){
-            let answer = "No info";
+            let answer = "Please, add information";
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
         }else if(this._dataBase.searchUserNameInDataBase(this._userName.value)){
             this._errorInfo.innerHTML = "Wrong username";
             this._errorInfo.style.display = "block";    
         }else if(this.validateEmail() == false){
-            console.log("email is not working");
             this._errorInfo.innerHTML = "Wrong Email Type";
             this._errorInfo.style.color = 'red';
             this._errorInfo.style.display = "block";
         }else if(this.checkPassword() == false){
-            let answer = "Password is too short";
+            let answer = "Password is short";
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
         }else if(this.checkTwoPasswords == false){
             this._userPassword.style.color = 'red';
             this._userPasswordRepeat.style.color = 'red';
             this._errorInfo.style.color = 'red';
-            this._errorInfo.innerHTML = 'not matching';
+            this._errorInfo.innerHTML = 'Password not match';
             this._errorInfo.style.display = "block";
         }else{
             this._userPassword.style.color = 'green';
@@ -158,8 +154,6 @@ class SignUp {
         }
     }
     checkTwoPasswords = () =>{
-        console.log(this._userPassword.value);
-        console.log(this._userPasswordRepeat.value);
         this._errorInfo.style.display = "none";
         if (this._userPassword.value === this._userPasswordRepeat.value){
 

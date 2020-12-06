@@ -93,17 +93,13 @@ class SignIn {
         }
     }
     checkInputs = event =>{
-        console.log(this._userName.value);
-        console.log(this._userPassword.value);
-        console.log(this._dataBase);
-        console.log(this._userPassword.value.length);
         event.preventDefault();
         if(this.checkString(this._userName.value) === false || this.checkString(this._userPassword.value) === false){
-            let answer = "No info";
+            let answer = "Please, add information";
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
         }else if(this.checkPassword() === false){
-            let answer = "Password is too short";
+            let answer = "Password is short";
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
         }else if (!this._dataBase.searchUserNameInDataBase(this._userName.value)){
@@ -115,7 +111,6 @@ class SignIn {
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
         }else{
-            console.log("cicey");
             let newPage = new Index();
             let root = document.getElementById("root");
             root.remove();

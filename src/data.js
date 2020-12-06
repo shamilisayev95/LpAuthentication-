@@ -17,7 +17,6 @@ class Data{
     }
 
     searchPasswordInDatabase = (userPassword) => {
-        console.log("sgol");
      
         return this._dataBase.find(
             item => item.password === userPassword
@@ -25,7 +24,6 @@ class Data{
     }
 
     searchUserNameInDataBase = (userName) => {
-        console.log("slam");
 
         return this._dataBase.find(
             item => item.username === userName
@@ -34,8 +32,7 @@ class Data{
 
     addToDatabase = (userName, userPassword) => {     
         let newObj = {username: userName, password: userPassword};
-        this._dataBase.push(newObj);
-        console.log(this._dataBase);      
+        this._dataBase.push(newObj);   
     }
 }
 
