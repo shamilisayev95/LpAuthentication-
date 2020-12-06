@@ -57,7 +57,6 @@ class SignIn {
 
         let showPasswordLabel = document.createElement("p");
         showPasswordLabel.className = "show-password-label";
-        showPasswordLabel.innerHTML = "Show password";
         divFormSection.append(showPasswordLabel);
 
 
@@ -94,7 +93,7 @@ class SignIn {
     checkInputs = event =>{
         event.preventDefault();
         if(this.checkString(this._userName.value) === false || this.checkString(this._userPassword.value) === false){
-            let answer = "No info";
+            let answer = "Please add Information";
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
         }else if(this.checkPassword() === false){

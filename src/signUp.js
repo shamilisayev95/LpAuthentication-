@@ -111,7 +111,7 @@ class SignUp {
     checkNewInfo = event => {
         event.preventDefault();
         if(this.checkString(this._userName.value) === false || this.checkString(this._userPassword.value) === false || this.checkString(this._userPasswordRepeat.value) === false || this.checkString(this._email.value) === false){
-            let answer = "No info";
+            let answer = "Please add Information";
             this._errorInfo.innerHTML = answer;
             this._errorInfo.style.display = "block";
         }else if(this._dataBase.searchUserNameInDataBase(this._userName.value)){
@@ -129,7 +129,7 @@ class SignUp {
             this._userPassword.style.color = 'red';
             this._userPasswordRepeat.style.color = 'red';
             this._errorInfo.style.color = 'red';
-            this._errorInfo.innerHTML = 'not matching';
+            this._errorInfo.innerHTML = 'Password dont match';
             this._errorInfo.style.display = "block";
         }else{
             this._userPassword.style.color = 'green';
