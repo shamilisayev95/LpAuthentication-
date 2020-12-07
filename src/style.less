@@ -1,0 +1,268 @@
+html {
+  width: 100%;
+  height: 100%;
+}
+
+body {
+  width: 100%;
+  height: 100vh;
+  background-image: url("./img/dragon.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.input-name {
+  width: 33%;
+  height: 50px;
+  color: rgb(17, 155, 253);
+  outline: none;
+  border: 2px solid;
+  border-radius: 20px;
+  background-color: #a6d4f5;
+}
+
+.input-name-reg {
+  width: 33%;
+  height: 50px;
+  color: rgb(17, 155, 253);
+  outline: none;
+  border: 2px solid;
+  border-radius: 20px;
+  background-color: #a6d4f5;
+}
+
+.input-email {
+  width: 33%;
+  height: 50px;
+  color: rgb(17, 155, 253);
+  outline: none;
+  border: 2px solid;
+  border-radius: 20px;
+  background-color: #a6d4f5;
+}
+
+.input-password-reg {
+  width: 33%;
+  height: 50px;
+  color: rgb(17, 155, 253);
+  outline: none;
+  border: 2px solid;
+  border-radius: 20px;
+  background-color: #a6d4f5;
+}
+
+.input-password-repeat {
+  width: 33%;
+  height: 50px;
+  color: rgb(17, 155, 253);
+  outline: none;
+  border: 2px solid;
+  border-radius: 20px;
+  background-color: #a6d4f5;
+}
+
+::placeholder {
+  color: rgb(184, 151, 8);
+}
+
+.label-name {
+  color: rgb(17, 155, 253);
+  margin-right: 14%;
+}
+
+.label-password {
+  color: rgb(17, 155, 253);
+  margin-right: 14%;
+  margin-top: 2%;
+}
+
+.label-email {
+  color: rgb(17, 155, 253);
+  margin-right: 15%;
+  margin-top: 2%;
+}
+
+.label-password-repeate {
+  color: rgb(17, 155, 253);
+  margin-right: 14%;
+  margin-top: 2%;
+}
+
+.error-box {
+  color: red;
+  background-color: rgb(212, 169, 169);
+  margin-top: 12%;
+  margin-right: 13.7%;
+  position: fixed;
+  right: 2%;
+}
+
+.show-password-label {
+  color: rgb(17, 155, 253);
+  margin-right: 12%;
+}
+
+.show-password {
+  margin-top: 4.1%;
+  position: absolute;
+  right: 7%;
+}
+
+.input-password {
+  width: 33%;
+  height: 50px;
+  color: rgb(17, 155, 253);
+  outline: none;
+  border-radius: 20px;
+  border: 2px solid;
+  background-color: #a6d4f5;
+}
+
+.Buttons {
+  display: flex;
+  margin-left: 80%;
+  align-items: flex-end;
+  justify-content: flex-end;
+  padding: 0 5% 5%;
+  justify-content: space-around;
+  margin-top: 5%;
+}
+
+.signin-modal {
+  width: 15%;
+  height: 50px;
+  color: rgb(17, 155, 253);
+  background-image: url("./img/fire2.gif");
+  background-size: cover;
+  background-position: center;
+  outline: none;
+  border-radius: 20px;
+  border: 2px solid;
+  margin-right: 9%;
+}
+
+.signup-modal {
+  width: 15%;
+  height: 50px;
+  color: rgb(17, 155, 253);
+  background-image: url("./img/fire2.gif");
+  background-size: cover;
+  background-position: center;
+  outline: none;
+  border-radius: 20px;
+  border: 2px solid;
+  margin-right: 9%;
+  margin-top: 2%;
+}
+
+.signIn {
+  width: 70px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgb(10, 26, 80);
+  border-radius: 20px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 2000ms;
+}
+
+.signIn:hover {
+    background-color: rgb(17, 155, 253);
+}
+
+.signUp {
+  width: 70px;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  background-color: rgb(10, 26, 80);
+  border-radius: 20px;
+  text-transform: capitalize;
+  cursor: pointer;
+  transition: 2000ms;
+}
+
+.signUp:hover {
+  background-color: rgb(17, 155, 253);
+}
+
+.form-section {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex-direction: column;
+  margin-top: 10%;
+  margin-right: 10%;
+  padding: 0 0 0 20%;
+}
+
+.signin-window {
+  display: flex;
+  flex-direction: column;
+}
+
+.sign-out {
+  width: 10%;
+  height: 50px;
+  color: rgb(17, 155, 253);
+  background-image: url("./img/fire.gif");
+  background-size: cover;
+  background-position: center;
+  outline: none;
+  border-radius: 20px;
+  border: 2px solid;
+}
+
+.signout-button-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: 6%;
+  margin-top: 2%;
+}
+
+.welcome { 
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  margin-right: 6%;
+  margin-top: 2% ;
+}
+
+.form-welcome {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wrapper {
+  position: absolute;
+  top: 50%;
+  width: 90%;
+  left: 5%;
+  margin-top: -87.5px;
+  font-size: 60px;
+  height: 175px;
+}
+
+.welcome-text {
+  font-size: 200px;
+}
+
+.wave {
+  color: white;
+  animation: 2s color infinite;
+}
+
+@keyframes color {
+  50% {
+    color: blue;
+    font-size: 50px;
+  }
+}
